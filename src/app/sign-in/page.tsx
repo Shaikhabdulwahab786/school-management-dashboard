@@ -10,35 +10,50 @@ import { useEffect, useState } from "react";
 const LoginPage = () => {
   const { isLoaded, isSignedIn, user } = useUser();
   const [loading, setLoading] = useState(false);
-
   const router = useRouter();
 
+  // ✅ Safe role-based redirect
   useEffect(() => {
-    const role = user?.publicMetadata.role;
+    if (!isLoaded || !isSignedIn) return;
 
-    if (role) {
-      router.push(`/${role}`);
-    }
-  }, [user, router]);
+    const role = user?.publicMetadata?.role;
 
-  console.log(isLoaded);
+    if (role === "admin") router.replace("/admin");
+    else if (role === "teacher") router.replace("/teacher");
+    else if (role === "student") router.replace("/student");
+    else router.replace("/sign-in");
+  }, [isLoaded, isSignedIn, user, router]);
+
+  // ⏳ Prevent UI flicker
+  if (!isLoaded) {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen flex items-center justify-center bg-lamaSkyLight">
-      <SignIn.Root>
+      <SignIn.Root
+        onSubmit={() => setLoading(true)}
+      >
         <SignIn.Step
           name="start"
           className="bg-white p-12 rounded-md shadow-2xl flex flex-col gap-2"
         >
           <h1 className="text-xl font-bold flex items-center gap-2">
-            <Image src="/logo.png" alt="" width={24} height={24} />
+            <Image src="/logo.png" alt="logo" width={24} height={24} />
             Gravity Dashboard
           </h1>
+
           <h2 className="text-gray-400">Sign in to your account</h2>
+
           <Clerk.GlobalError className="text-sm text-red-400" />
+
           <Clerk.Field name="identifier" className="flex flex-col gap-2">
             <Clerk.Label className="text-xs text-gray-500">
-              Username
+              Username or Email
             </Clerk.Label>
             <Clerk.Input
               type="text"
@@ -47,6 +62,7 @@ const LoginPage = () => {
             />
             <Clerk.FieldError className="text-xs text-red-400" />
           </Clerk.Field>
+
           <Clerk.Field name="password" className="flex flex-col gap-2">
             <Clerk.Label className="text-xs text-gray-500">
               Password
@@ -58,11 +74,14 @@ const LoginPage = () => {
             />
             <Clerk.FieldError className="text-xs text-red-400" />
           </Clerk.Field>
+
           <SignIn.Action
             submit
-            className={`bg-blue-500 text-white my-1 rounded-md text-sm p-[10px]`}
+            disabled={loading}
+            className={`bg-blue-500 text-white my-1 rounded-md text-sm p-[10px]
+              ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
           >
-            Log in
+            {loading ? "Logging in..." : "Log in"}
           </SignIn.Action>
         </SignIn.Step>
       </SignIn.Root>
