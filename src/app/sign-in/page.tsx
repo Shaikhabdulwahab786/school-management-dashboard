@@ -36,7 +36,6 @@ const LoginPage = () => {
   return (
     <div className="h-screen flex items-center justify-center bg-lamaSkyLight">
       <SignIn.Root
-        onSubmit={() => setLoading(true)}
       >
         <SignIn.Step
           name="start"
@@ -78,6 +77,7 @@ const LoginPage = () => {
           <SignIn.Action
             submit
             disabled={loading}
+            onClick={() => setLoading(true)}
             className={`bg-blue-500 text-white my-1 rounded-md text-sm p-[10px]
               ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
           >
