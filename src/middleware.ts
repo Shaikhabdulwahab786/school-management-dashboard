@@ -12,7 +12,10 @@ export default clerkMiddleware((auth, req) => {
   // if (isProtectedRoute(req)) auth().protect()
 
   const { sessionClaims } = auth();
-
+  if (!sessionClaims) {
+    return NextResponse.next();
+  }
+   
   const role = (sessionClaims?.metadata as { role?: string })?.role;
   console.log(role)
 
