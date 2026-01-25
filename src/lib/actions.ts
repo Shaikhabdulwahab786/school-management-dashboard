@@ -10,6 +10,7 @@ import {
 } from "./formValidationSchemas";
 import prisma from "./prisma";
 import { clerkClient } from "@clerk/nextjs/server";
+import { token } from "./utils";
 
 type CurrentState = { success: boolean; error: boolean };
 
@@ -235,7 +236,7 @@ export const deleteTeacher = async (
     await prisma.lesson.deleteMany({
       where: { teacherId: id },
     });
-   
+
     await prisma.teacher.delete({
       where: {
         id: id,

@@ -2,6 +2,10 @@
 // FOR THIS REASON WE'LL GET THE LAST WEEK AS THE REFERENCE WEEK.
 // IN THE TUTORIAL WE'RE TAKING THE NEXT WEEK AS THE REFERENCE WEEK.
 
+import crypto from "crypto";
+
+export const token = crypto.randomUUID();
+
 const getLatestMonday = (): Date => {
   const today = new Date();
   const dayOfWeek = today.getDay();

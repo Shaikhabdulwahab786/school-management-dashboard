@@ -1,5 +1,5 @@
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -13,26 +13,28 @@ model Admin {
 }
 
 model Student {
-  id          String       @id
-  username    String       @unique
-  name        String
-  surname     String
-  email       String?      @unique
-  phone       String?      @unique
-  address     String
-  img         String?
-  bloodType   String
-  sex         UserSex
-  createdAt   DateTime     @default(now())
-  parentId    String
-  parent      Parent       @relation(fields: [parentId], references: [id])
-  classId     Int
-  class       Class        @relation(fields: [classId], references: [id])
-  gradeId     Int
-  grade       Grade        @relation(fields: [gradeId], references: [id])
-  attendances Attendance[]
-  results     Result[]
-  birthday    DateTime
+  id            String       @id
+  username      String       @unique
+  publicToken   String       @unique @default(uuid())
+  publicEnabled Boolean      @default(true)
+  name          String
+  surname       String
+  email         String?      @unique
+  phone         String?      @unique
+  address       String
+  img           String?
+  bloodType     String
+  sex           UserSex
+  createdAt     DateTime     @default(now())
+  parentId      String
+  parent        Parent       @relation(fields: [parentId], references: [id])
+  classId       Int
+  class         Class        @relation(fields: [classId], references: [id])
+  gradeId       Int
+  grade         Grade        @relation(fields: [gradeId], references: [id])
+  attendances   Attendance[]
+  results       Result[]
+  birthday      DateTime
 }
 
 model Teacher {
