@@ -26,11 +26,11 @@ const StudentListPage = async ({
       header: "Info",
       accessor: "info",
     },
-    {
+    ...( role === "admin" ? [{
       header: "Student ID",
       accessor: "studentId",
       className: "hidden md:table-cell",
-    },
+    }] : []),
     {
       header: "Grade",
       accessor: "grade",
@@ -74,7 +74,7 @@ const StudentListPage = async ({
           <p className="text-xs text-gray-500">{item.class.name}</p>
         </div>
       </td>
-      <td className="hidden md:table-cell">{item.username}</td>
+    { role === 'admin'&& ( <td className="hidden md:table-cell">{item.username}</td>)}
       <td className="hidden md:table-cell">{item.class.name[0]}</td>
       <td className="hidden md:table-cell">{item.phone}</td>
       <td className="hidden md:table-cell">{item.address}</td>

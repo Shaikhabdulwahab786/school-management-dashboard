@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .react-calendar {
   width: 100% !important;
   border: none !important;
@@ -80,29 +81,36 @@
 .rbc-event:nth-child(1) {
   background-color: #e2f8ff !important;
 }
+
 .rbc-event:nth-child(2) {
   background-color: #fefce8 !important;
 }
+
 .rbc-event:nth-child(3) {
   background-color: #f2f1ff !important;
 }
+
 .rbc-event:nth-child(4) {
   background-color: #fdf2fb !important;
 }
+
 .rbc-event:nth-child(5) {
   background-color: #e2f8ff !important;
 }
+
 .rbc-event:nth-child(6) {
   background-color: #fefce8 !important;
 }
+
 .rbc-event:nth-child(7) {
   background-color: #f2f1ff !important;
 }
+
 .rbc-event:nth-child(8) {
   background-color: #fdf2fb !important;
 }
 
-.rbc-event-label{
+.rbc-event-label {
   color: gray !important;
   margin-bottom: 5px;
 }

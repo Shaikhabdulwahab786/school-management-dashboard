@@ -141,6 +141,8 @@ const StudentForm = ({
         <InputField
           label="Phone"
           name="phone"
+          maxLength="10"
+          minLength="10"
           defaultValue={data?.phone}
           register={register}
           error={errors.phone}

@@ -1,6 +1,4 @@
 
-
-import Announcements from "@/components/Announcements";
 import BigCalendarContainer from "@/components/BigCalendarContainer";
 import Performance from "@/components/Performance";
 import StudentAttendanceCard from "@/components/StudentAttendanceCard";
@@ -32,8 +30,6 @@ export default async function PublicStudentProfile({
     
     notFound();
   }
-
-  console.log("✅ exists",student?.publicToken); 
 
   return (
     <div className="flex-1 p-4 flex flex-col gap-4 xl:flex-row">

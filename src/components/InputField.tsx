@@ -5,6 +5,8 @@ type InputFieldProps = {
   type?: string;
   register: any;
   name: string;
+  maxLength?:string
+  minLength?:string
   defaultValue?: string;
   error?: FieldError;
   hidden?: boolean;
@@ -18,6 +20,8 @@ const InputField = ({
   name,
   defaultValue,
   error,
+  minLength,
+  maxLength,
   hidden,
   inputProps,
 }: InputFieldProps) => {
@@ -30,6 +34,8 @@ const InputField = ({
         className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
         {...inputProps}
         defaultValue={defaultValue}
+        maxLength={maxLength}
+        minLength={minLength}
       />
       {error?.message && (
         <p className="text-xs text-red-400">{error.message.toString()}</p>
