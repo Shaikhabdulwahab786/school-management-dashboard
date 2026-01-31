@@ -54,24 +54,24 @@ async function main() {
   // });
 
   // GRADE
-  for (let i = 1; i <= 6; i++) {
-    await prisma.grade.create({
-      data: {
-        level: i,
-      },
-    });
-  }
+  // for (let i = 1; i <= 6; i++) {
+  //   await prisma.grade.create({
+  //     data: {
+  //       level: i,
+  //     },
+  //   });
+  // }
 
   // CLASS
-  for (let i = 1; i <= 6; i++) {
-    await prisma.class.create({
-      data: {
-        name: `${i}A`,
-        gradeId: i,
-        capacity: Math.floor(Math.random() * (20 - 15 + 1)) + 15,
-      },
-    });
-  }
+  // for (let i = 1; i <= 6; i++) {
+  //   await prisma.class.create({
+  //     data: {
+  //       name: `${i}A`,
+  //       gradeId: i,
+  //       capacity: Math.floor(Math.random() * (20 - 15 + 1)) + 15,
+  //     },
+  //   });
+  // }
 
 
   // SUBJECT
@@ -88,9 +88,9 @@ async function main() {
     { name: "Art" },
   ];
 
-  for (const subject of subjectData) {
-    await prisma.subject.create({ data: subject });
-  }
+  // for (const subject of subjectData) {
+  //   await prisma.subject.create({ data: subject });
+  // }
 
   // TEACHER
   // for (let i = 1; i <= 15; i++) {

@@ -9,6 +9,13 @@
   font-family: "Inter", sans-serif !important;
 }
 
+.rbc-header {
+  display: block !important;
+  font-weight: 400 !important;
+
+}
+
+
 .react-calendar__navigation__label__labelText {
   font-weight: 600;
 }
@@ -46,8 +53,8 @@
   border-color: #eee !important;
 }
 
-.rbc-time-header {
-  display: none !important;
+.rbc-time-header {  
+  display: hidden !important;
 }
 
 .rbc-time-content {
@@ -73,9 +80,9 @@
 .rbc-event {
   border: none !important;
   color: black !important;
-  padding: 10px !important;
-  margin: 10px !important;
-  width: 99% !important;
+  padding: 1rem !important;
+  margin: 0.2rem !important;
+  width: 100% !important;
 }
 
 .rbc-event:nth-child(1) {
@@ -111,6 +118,6 @@
 }
 
 .rbc-event-label {
-  color: gray !important;
-  margin-bottom: 5px;
+  color: grey !important;
+  margin-bottom: 0.2rem;
 }

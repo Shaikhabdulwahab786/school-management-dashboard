@@ -5,6 +5,7 @@ type InputFieldProps = {
   type?: string;
   register: any;
   name: string;
+  customClass?: string;
   maxLength?:string
   minLength?:string
   defaultValue?: string;
@@ -23,10 +24,11 @@ const InputField = ({
   minLength,
   maxLength,
   hidden,
+  customClass,
   inputProps,
 }: InputFieldProps) => {
   return (
-    <div className={hidden ? "hidden" : "flex flex-col gap-2 w-full md:w-1/4"}>
+    <div className={`${hidden ? "hidden" : ""} flex flex-col gap-2 w-full md:w-1/4 ${customClass ? customClass : ''} `}>
       <label className="text-xs text-gray-500">{label}</label>
       <input
         type={type}

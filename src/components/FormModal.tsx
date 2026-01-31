@@ -51,6 +51,18 @@ const ClassForm = dynamic(() => import("./forms/ClassForm"), {
 const ExamForm = dynamic(() => import("./forms/ExamForm"), {
   loading: () => <h1>Loading...</h1>,
 });
+const AssignmentForm = dynamic(() => import("./forms/AssignmentForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const AnnouncementsForm = dynamic(() => import("./forms/AnnouncementsForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const LessonForm = dynamic(() => import("./forms/LessonForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const EventForm = dynamic(() => import("./forms/EventForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
 // TODO: OTHER FORMS
 
 const forms: {
@@ -58,7 +70,7 @@ const forms: {
     setOpen: Dispatch<SetStateAction<boolean>>,
     type: "create" | "update",
     data?: any,
-    relatedData?: any
+    relatedData?: any,
   ) => JSX.Element;
 } = {
   subject: (setOpen, type, data, relatedData) => (
@@ -95,6 +107,48 @@ const forms: {
   ),
   exam: (setOpen, type, data, relatedData) => (
     <ExamForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />
+  ),
+  assignment: (setOpen, type, data, relatedData) => (
+    <AssignmentForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />
+  ),
+  lesson: (setOpen, type, data, relatedData) => (
+    <LessonForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />
+  ),
+  result: (setOpen, type, data, relatedData) => (
+    <ExamForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />
+    // TODO OTHER LIST ITEMS
+  ),
+  announcement: (setOpen, type, data, relatedData) => (
+    <AnnouncementsForm
+      type={type}
+      data={data}
+      setOpen={setOpen}
+      relatedData={relatedData}
+    />
+    // TODO OTHER LIST ITEMS
+  ),
+  event: (setOpen, type, data, relatedData) => (
+    <EventForm
       type={type}
       data={data}
       setOpen={setOpen}
@@ -138,29 +192,27 @@ const FormModal = ({
     }, [state, router]);
 
     return type === "delete" && id ? (
-  <form action={formAction} className="p-4 flex flex-col gap-4">
-    <input type="hidden" name="id" value={id} />
-    <span className="text-center font-medium">
-      All data will be lost. Are you sure you want to delete this {table}?
-    </span>
-    <button className="bg-red-700 text-white py-2 px-4 rounded-md border-none w-max self-center">
-      Delete
-    </button>
-  </form>
-) : type === "create" || type === "update" ? (
-  typeof forms[table] === "function" ? (
-    forms[table](setOpen, type, data, relatedData)
-  ) : (
-    <span className="text-center text-gray-500">
-      Form not available for {table}
-    </span>
-  )
-) : (
-  "Form not found!"
-);
-
+      <form action={formAction} className="p-4 flex flex-col gap-4">
+        <input type="hidden" name="id" value={id} />
+        <span className="text-center font-medium">
+          All data will be lost. Are you sure you want to delete this {table}?
+        </span>
+        <button className="bg-red-700 text-white py-2 px-4 rounded-md border-none w-max self-center">
+          Delete
+        </button>
+      </form>
+    ) : type === "create" || type === "update" ? (
+      typeof forms[table] === "function" ? (
+        forms[table](setOpen, type, data, relatedData)
+      ) : (
+        <span className="text-center text-gray-500">
+          Form not available for {table}
+        </span>
+      )
+    ) : (
+      "Form not found!"
+    );
   };
-
   return (
     <>
       <button

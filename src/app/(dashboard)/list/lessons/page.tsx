@@ -37,7 +37,7 @@ const columns = [
     accessor: "teacher",
     className: "hidden md:table-cell",
   },
-  ...(role === "admin"
+  ...(role === "admin" 
     ? [
         {
           header: "Actions",
@@ -129,7 +129,7 @@ const renderRow = (item: LessonList) => (
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
-            {role === "admin" && <FormContainer table="lesson" type="create" />}
+            {(role === "admin" && <FormContainer table="lesson" type="create" />)}
           </div>
         </div>
       </div>

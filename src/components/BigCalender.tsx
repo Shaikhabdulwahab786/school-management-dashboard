@@ -18,18 +18,20 @@ const BigCalendar = ({
     setView(selectedView);
   };
 
+  console.log(data)
+
   return (
     <Calendar
       localizer={localizer}
       events={data}
       startAccessor="start"
       endAccessor="end"
-      views={["work_week", "day"]}
+      views={["work_week", "day",]}
       view={view}
-      style={{ height: "98%" }}
+      style={{ height: "98vh" }}
       onView={handleOnChangeView}
-      min={new Date(2025, 1, 0, 8, 0, 0)}
-      max={new Date(2025, 1, 0, 17, 0, 0)}
+      min={new Date(2026, 1, 0, 8, 0, 0)}
+      max={new Date(2026, 1, 0, 17, 0, 0)}
     />
   );
 };

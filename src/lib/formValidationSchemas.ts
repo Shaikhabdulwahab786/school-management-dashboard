@@ -1,5 +1,5 @@
 import { z } from "zod";
-
+import { Day } from "@prisma/client";
 export const subjectSchema = z.object({
   id: z.coerce.number().optional(),
   name: z.string().min(1, { message: "Subject name is required!" }),
@@ -87,3 +87,48 @@ export const examSchema = z.object({
 });
 
 export type ExamSchema = z.infer<typeof examSchema>;
+
+export const eventSchema = z.object({
+  id: z.coerce.number().optional(),
+  title: z.string().min(5, { message: "Title name is required!" }),
+  description: z.string().min(5, { message: "Description  is required!" }),
+  startTime: z.coerce.date({ message: "Start time is required!" }),
+  endTime: z.coerce.date({ message: "End time is required!" }),
+  classId: z.coerce.number({ message: " Class is required!" }),
+});
+
+export type EVENTSchema = z.infer<typeof eventSchema>;
+
+export const announcementSchema = z.object({
+  id: z.coerce.number().optional(),
+  title: z.string().min(5, { message: "Title name is required!" }),
+  description: z.string().min(5, { message: "Description  is required!" }),
+  date: z.coerce.date({ message: "Date is required!" }),
+  classId: z.coerce.number({ message: " Class is required!" }),
+});
+
+export type ANNOUNCEMENTSchema = z.infer<typeof announcementSchema>;
+
+
+export const assignmentSchema = z.object({
+  id: z.coerce.number().optional(),
+  title: z.string().min(5, { message: "Title name is required!" }),
+  startDate: z.coerce.date({ message: "Start time is required!" }),
+  dueDate: z.coerce.date({ message: "Due time is required!" }),
+  lessonId: z.coerce.number({ message: "Lesson is required!" }),
+});
+
+export type AssignmentSchema = z.infer<typeof assignmentSchema>;
+
+export const lessonSchema = z.object({
+  id: z.coerce.number().optional(),
+  name: z.string().min(1, { message: "name is required!" }),
+  day: z.nativeEnum(Day),
+  startTime: z.string().min(1, "Start time is required"),
+  endTime: z.string().min(1, "End time is required"),
+  subjectId: z.coerce.number({ message: "SubjectId is required!" }),
+  classId: z.coerce.number({ message: "ClassId is required!" }),
+  teacher: z.array(z.string()),
+});
+
+export type LessonSchema = z.infer<typeof lessonSchema>;
