@@ -201,8 +201,8 @@ const LessonForm = ({
           <select
             multiple
             className="ring-[1.5px] ring-gray-300 p-2 rounded-md text-sm w-full"
-            {...register("teacher")}
-            defaultValue={data?.teacher}
+            {...register("teacherId")}
+            defaultValue={data?.teacherId}
           >
             {teachers.map(
               (teacher: { id: string; name: string; surname: string }) => (
@@ -212,9 +212,9 @@ const LessonForm = ({
               ),
             )}
           </select>
-          {errors.teacher?.message && (
+          {errors.teacherId?.message && (
             <p className="text-xs text-red-400">
-              {errors.teacher.message.toString()}
+              {errors.teacherId.message.toString()}
             </p>
           )}
         </div>
