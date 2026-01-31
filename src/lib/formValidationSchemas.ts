@@ -128,7 +128,7 @@ export const lessonSchema = z.object({
   endTime: z.string().min(1, "End time is required"),
   subjectId: z.coerce.number({ message: "SubjectId is required!" }),
   classId: z.coerce.number({ message: "ClassId is required!" }),
-  teacher: z.array(z.string()),
+  teacherId: z.string({ message: "Teacher is required!" }),
 });
 
 export type LessonSchema = z.infer<typeof lessonSchema>;

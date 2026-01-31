@@ -594,7 +594,7 @@ export const createLesson = async (
           connect: { id: data.classId },
         },
         teacher: {
-          connect: { id: data.teacher.toString() },
+          connect: { id: data.teacherId.toString() },
         },
       },
     });
@@ -636,15 +636,14 @@ export const updateLesson = async (
         id: data?.id,
       },
       data: {
+        ...data,
         name: data.name,
         day: data.day,
         startTime,
         endTime,
         classId: data.classId,
         subjectId: data.subjectId,
-        teacher: {
-          set: data.teacher.map((teacherId) => ({ id: teacherId })),
-        },
+        teacherId:data.teacherId
       },
     });
 
