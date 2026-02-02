@@ -17,8 +17,13 @@ const BigCalendar = ({
   const handleOnChangeView = (selectedView: View) => {
     setView(selectedView);
   };
+  const minTime = new Date();
+  minTime.setHours(8, 0, 0, 0);
 
-  console.log(data)
+  const maxTime = new Date();
+  maxTime.setHours(17, 0, 0, 0);
+
+  console.log(data);
 
   return (
     <Calendar
@@ -26,12 +31,12 @@ const BigCalendar = ({
       events={data}
       startAccessor="start"
       endAccessor="end"
-      views={["work_week", "day",]}
+      views={["work_week", "day"]}
       view={view}
       style={{ height: "98vh" }}
       onView={handleOnChangeView}
-      min={new Date(2026, 1, 0, 8, 0, 0)}
-      max={new Date(2026, 1, 0, 17, 0, 0)}
+      min={minTime}
+      max={maxTime}
     />
   );
 };

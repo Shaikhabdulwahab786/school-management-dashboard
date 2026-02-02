@@ -95,13 +95,20 @@ const AnnouncementListPage = async ({
     student: { students: { some: { id: currentUserId! } } },
     parent: { students: { some: { parentId: currentUserId! } } },
   };
+const roleCondition = roleConditions[role as keyof typeof roleConditions];
 
-  query.OR = [
-    { classId: null },
-    {
-      class: roleConditions[role as keyof typeof roleConditions] || {},
-    },
-  ];
+  // query.OR = [
+  //   { classId: null },
+  //   {
+  //     class: roleConditions[role as keyof typeof roleConditions] || {},
+  //   },
+  // ];
+
+    if (roleCondition) {
+    query.class = {
+      is: roleCondition,
+    };
+  }
 
   const [data, count] = await prisma.$transaction([
     prisma.announcement.findMany({
@@ -114,7 +121,6 @@ const AnnouncementListPage = async ({
     }),
     prisma.announcement.count({ where: query }),
   ]);
-  console.log(data)
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
       {/* TOP */}
@@ -131,7 +137,7 @@ const AnnouncementListPage = async ({
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
-            {role === "admin" && (
+            {(role === "admin" || role === "teacher") && (
               <FormContainer table="announcement" type="create" />
             )}
           </div>

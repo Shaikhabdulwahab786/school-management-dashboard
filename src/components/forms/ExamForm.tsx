@@ -83,6 +83,7 @@ const ExamForm = ({
         <InputField
           label="Start Date"
           name="startTime"
+          customClass="flex-1"
           defaultValue={data?.startTime}
           register={register}
           error={errors?.startTime}
@@ -91,6 +92,7 @@ const ExamForm = ({
         <InputField
           label="End Date"
           name="endTime"
+          customClass="flex-1"
           defaultValue={data?.endTime}
           register={register}
           error={errors?.endTime}
